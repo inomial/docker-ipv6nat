@@ -197,18 +197,20 @@ func getRulesForNetwork(network *managedNetwork, hairpinMode bool) *Ruleset {
 	}
 
 	rs := Ruleset{
-		NewRule(TableFilter, ChainForward,
+/*		NewRule(TableFilter, ChainForward,
 			"-o", network.bridge,
 			"-j", ChainDocker),
+*/
 		NewRule(TableFilter, ChainForward,
 			"-o", network.bridge,
 			"-m", "conntrack",
 			"--ctstate", "RELATED,ESTABLISHED",
 			"-j", "ACCEPT"),
-		NewRule(TableFilter, ChainForward,
+/*		NewRule(TableFilter, ChainForward,
 			"-i", network.bridge,
 			"!", "-o", network.bridge,
 			"-j", "ACCEPT"),
+*/
 		NewRule(TableFilter, ChainForward,
 			"-i", network.bridge,
 			"-o", network.bridge,
