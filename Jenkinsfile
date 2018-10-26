@@ -5,6 +5,7 @@ node {
         echo "VersionNumber: ${versionNumber}"
     }
     stage('Build Docker image') {
+        sh "sudo apt-get install -y make"
         sh "./mkdocker"
     }
     stage('Push Docker image') {
